@@ -1,7 +1,5 @@
 import unittest
 
-from matplotlib.pyplot import pie
-
 from ..Konto import Konto, KontoFirmowe
 
 class TestCreateBankAccount(unittest.TestCase):

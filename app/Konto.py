@@ -4,6 +4,7 @@ class Konto:
         self.nazwisko = nazwisko
         self.pesel = pesel if len(pesel) == 11 else "Niepoprawny pesel!"
         self.saldo = 0
+        self.historia = []
         if kod_prom != None:
             self.checkPromoCode(kod_prom)
 ### Kod Promocyjny
@@ -17,21 +18,28 @@ class Konto:
 ### Przelewy
     def przelewIn(self, kwota):
         self.saldo += kwota
+        self.historia.append(kwota)
 
     def przelewOut(self, kwota):
         if (self.saldo >= kwota):
             self.saldo -= kwota
+            self.historia.append(-kwota)
     
     def przelewEksOut(self, kwota):
-        if self.saldo >= (kwota + 1):
+        if self.saldo >= kwota:
             self.saldo -= (kwota + 1)
+            self.historia.append(-kwota)
+            self.historia.append(-1)
 
 class KontoFirmowe(Konto):
     def __init__(self, company_name, nip):
         self.company_name = company_name
         self.nip = nip if len(nip) == 10 else "Niepoprawny NIP!"
         self.saldo = 0
+        self.historia = []
         
     def przelewEksOut(self, kwota):
-        if self.saldo >= (kwota + 5):
+        if self.saldo >= kwota:
             self.saldo -= (kwota + 5)
+            self.historia.append(-kwota)
+            self.historia.append(-5)

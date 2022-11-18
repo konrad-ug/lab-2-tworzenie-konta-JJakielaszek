@@ -30,6 +30,34 @@ class Konto:
             self.saldo -= (kwota + 1)
             self.historia.append(-kwota)
             self.historia.append(-1)
+### Kredyt
+    def checkLastSum(self, kwota):
+        if (sum(self.historia[-5:]) > kwota):
+            return True
+        else:
+            return False
+
+    def checkLastTransaction(self):
+        if (min(self.historia[-3:]) > 0):
+            return True
+        else:
+            return False
+
+    def creditIsValid(self, kwota):
+        if (len(self.historia) >= 5):
+            if (self.checkLastTransaction() and self.checkLastSum(kwota)):
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    def zaciagnij_kredyt(self, kwota):
+        if (self.creditIsValid(kwota)):
+            self.saldo += kwota
+            return True
+        else:
+            return False
 
 class KontoFirmowe(Konto):
     def __init__(self, company_name, nip):

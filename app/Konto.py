@@ -31,21 +31,21 @@ class Konto:
             self.historia.append(-kwota)
             self.historia.append(-1)
 ### Kredyt
-    def checkLastSum(self, kwota):
-        if (sum(self.historia[-5:]) > kwota):
+    def checkLastSum(self, amount, kwota):
+        if (sum(self.historia[-amount:]) > kwota):
             return True
         else:
             return False
 
-    def checkLastTransaction(self):
-        if (min(self.historia[-3:]) > 0):
+    def checkLastTransaction(self, amount):
+        if (min(self.historia[-amount:]) > 0):
             return True
         else:
             return False
 
     def creditIsValid(self, kwota):
         if (len(self.historia) >= 5):
-            if (self.checkLastTransaction() and self.checkLastSum(kwota)):
+            if (self.checkLastTransaction(3) and self.checkLastSum(5, kwota)):
                 return True
             else:
                 return False
@@ -71,3 +71,28 @@ class KontoFirmowe(Konto):
             self.saldo -= (kwota + 5)
             self.historia.append(-kwota)
             self.historia.append(-5)
+
+    def checkAccountSaldo(self, kwota):
+        if (self.saldo >= kwota * 2):
+            return True
+        else:
+            return False
+
+    def paymentZUS(self):
+        for transfer in self.historia:
+            if transfer == -1755:
+                return True
+        return False 
+    
+    def creditIsValid(self, kwota):
+        if (self.checkAccountSaldo(kwota) and self.paymentZUS()):
+            return True
+        else:
+            return False
+
+    def zaciagnij_kredyt(self, kwota):
+        if (self.creditIsValid(kwota)):
+            self.saldo += kwota
+            return True
+        else:
+            return False

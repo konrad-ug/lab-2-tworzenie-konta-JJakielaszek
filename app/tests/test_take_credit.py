@@ -1,7 +1,7 @@
 import unittest
 from parameterized import parameterized
 
-from ..Konto import Konto, KontoFirmowe
+from ..Konto import Konto
 
 class TestTakeCreditKonto(unittest.TestCase):
     imie = "name1"
@@ -24,3 +24,4 @@ class TestTakeCreditKonto(unittest.TestCase):
         credit_result = self.konto.zaciagnij_kredyt(kwota)
         self.assertEquals(credit_result, oczekiwany_wynik)
         self.assertEquals(self.konto.saldo, oczekiwane_saldo)
+

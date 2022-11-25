@@ -21,7 +21,7 @@ class TestAccountsRegistry(unittest.TestCase):
         self.assertEqual(RejestrKont.how_many(), 3)
 
     def test_przeszukiwanie_rejestru_istniejace_konto(self):
-        self.assertEqual(RejestrKont.search_account(self.pesel), self.imie+' '+self.nazwisko)
+        self.assertEqual(RejestrKont.search_account(self.pesel).imie, self.konto.imie)
 
     def test_przeszukiwanie_rejesrtu_nieistniejace_konto(self):
         self.assertEqual(RejestrKont.search_account("0436236753"), None)

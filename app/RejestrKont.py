@@ -16,5 +16,5 @@ class RejestrKont:
     def search_account(cls, pesel):
         for konto in cls.registry:
             if konto.pesel == pesel:
-                return f'{konto.imie} {konto.nazwisko}'
+                return konto
         return None

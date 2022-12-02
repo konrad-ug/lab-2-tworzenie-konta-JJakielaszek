@@ -10,7 +10,7 @@ def stworz_konto():
     dane = request.get_json()
     print(f"Request o stworzenie konta z danymi: {dane}")
     konto = Konto(dane["imie"], dane["nazwisko"], dane["pesel"])
-    RejestrKont.dodaj_konto(konto)
+    RejestrKont.add_account(konto)
     return jsonify("Konto stworzone"), 201
 
 @app.route("/konta/ile_kont", methods=['GET'])
@@ -22,4 +22,5 @@ def wyszukaj_konto_z_peselem(pesel):
     print(f'Request o konto z peselem: {pesel}')
     konto = RejestrKont.search_account(pesel)
     print(konto)
-    return jsonify(imie=konto.imie, nazwisko=konto.nazwisko, pesel=konto.pesel), 200
+    return jsonify(imie=konto.imie, nazwisko=konto.nazwisko, pesel=konto.pesel, saldo=konto.saldo), 200
+ 

@@ -23,5 +23,5 @@ class TestTakeCreditCompanyAccount(unittest.TestCase):
         self.konto_firmowe.historia = historia
         self.konto_firmowe.saldo = poczatkowe_saldo
         credit_result = self.konto_firmowe.zaciagnij_kredyt(kwota)
-        self.assertEquals(credit_result, oczekiwany_wynik)
-        self.assertEquals(self.konto_firmowe.saldo, oczekiwane_saldo)
+        self.assertEqual(credit_result, oczekiwany_wynik)
+        self.assertEqual(self.konto_firmowe.saldo, oczekiwane_saldo)

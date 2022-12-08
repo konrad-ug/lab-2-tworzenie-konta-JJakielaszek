@@ -22,6 +22,6 @@ class TestTakeCreditKonto(unittest.TestCase):
     def test_kredyt_dla_konta(self, historia, kwota, oczekiwany_wynik, oczekiwane_saldo):
         self.konto.historia = historia
         credit_result = self.konto.zaciagnij_kredyt(kwota)
-        self.assertEquals(credit_result, oczekiwany_wynik)
-        self.assertEquals(self.konto.saldo, oczekiwane_saldo)
+        self.assertEqual(credit_result, oczekiwany_wynik)
+        self.assertEqual(self.konto.saldo, oczekiwane_saldo)
 
